@@ -6,16 +6,47 @@ import { ref } from "vue"
 let monsters = []
 let characters = []
 const show = ref({
+    //ELEMENT
     cardAttack: false,
     attackButton: true,
     summaryAttack: false,
     monsterDamage: false,
-    playerDamage: false
+    playerDamage: false,
+    //BG
+    mainBackground: true,
+    howToPlay: false,
+    mainMenu: true,
+    characterSelect: false,
+    mainGame: false
 })
 
 function setShow(id,isShow) {
     show.value[id] = isShow
 }
+
+function playBtn() {
+    setShow("characterSelect",true)
+    setShow("mainMenu",false)
+}
+
+function howToPlayBtn() {
+    setShow("howToPlay",true)
+    setShow("mainMenu",false)
+}
+function backtoMain(){
+    setShow("howToPlay",false)
+    setShow("characterSelect",false)
+    setShow("mainMenu",true)
+}
+
+function mainGame(){
+    setShow("characterSelect",false)
+    setShow("mainMenu",false)
+    setShow("howToPlay",false)
+    setShow("mainBackground",false)
+    setShow("mainGame",true)
+}
+
 
 function unpopup(id,delay) {
     setShow(id,false)
@@ -37,11 +68,11 @@ function init() {
         new Character("Raccoon",250,0,3)        
     ]
 
-    player.value.name = "RewLegendary"
+    // player.value.name = "RewLegendary"
+    // player.value.selectCharacter(0)
     monster.value = monsters[0]
-    player.value.selectCharacter(0)
 }
 
 export { 
-    unpopup,popup, init,characters,monsters,show
+    unpopup,popup, init,characters,monsters,show,playBtn,howToPlayBtn,backtoMain,mainGame
 }

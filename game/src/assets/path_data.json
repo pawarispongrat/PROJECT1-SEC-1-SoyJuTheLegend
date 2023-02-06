@@ -1,0 +1,21 @@
+{
+    "beariorIcon": "src/assets/background/icon/character-icon-1.png",
+    "foxsterIcon": "src/assets/background/icon/character-icon-2.png",
+
+    "foxsterIdle": "src/assets/background/character/foxster-idle.png",
+    "mainGameBg": "src/assets/background/main-map.png",
+    
+    "howToPlayBg":"src/assets/background/image/how-to-play-bg.png",
+    "animal_battle":"src/assets/background/image/animal_battle.png",
+    "howToPlay": "src/assets/background/image/howtoplay.png",
+    "mainBackground": "https://wallpapercave.com/wp/wp11435782.png",
+    "play":"src/assets/background/image/startBtn.png",
+    "back":"src/assets/background/image/back.png",
+    "card": "src/assets/background/card/%card%.png",
+    "bgCard1": "src/assets/background/image/card1.png",
+    "bgCard2": "src/assets/background/image/card2.png",
+    "bgCard3": "src/assets/background/image/card3.png"
+
+    
+    
+}

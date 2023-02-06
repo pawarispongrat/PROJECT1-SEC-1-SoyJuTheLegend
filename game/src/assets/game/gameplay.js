@@ -75,6 +75,8 @@ function getCard() {
         else return getCardByNumber(1)
     }
 }
+
+
 function randomCard(entity) {
     const damage = Math.floor(Math.random()*cards.length) //0-12
     entity["name"] = cards[damage]
