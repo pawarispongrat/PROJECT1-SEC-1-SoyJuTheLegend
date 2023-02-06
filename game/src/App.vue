@@ -28,7 +28,7 @@ const hover = "hover:-translate-y-1 hover:bg-teal-400 duration-300"
         <!-- ACTION BAR -->
         <div class="flex flex-wrap items-center justify-center p-5 bg-zinc-900 max-lg:flex-col text-2xl">
           <!-- ATTACK BTN -->
-          <button :class="show.attackButton ? hover : 'disabled'" @click="playerTurn()" class="flex-1 py-8 mr-5 w-full bg-emerald-500 text-white shadow-md spacing">ATTACK</button>
+          <button :disabled="!show.attackButton" @click="playerTurn()" class="flex-1 py-8 mr-5 w-full bg-emerald-500 text-white shadow-md spacing disabled:bg-zinc-600" disabled>ATTACK</button>
           <!-- MONSTER -->
           <div class="flex flex-1 py-3 w-full">
             <div class="shadow-md w-32 h-32  bg-zinc-800 flex justify-center">
