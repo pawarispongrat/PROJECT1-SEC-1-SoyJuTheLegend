@@ -154,7 +154,7 @@ function getCardSource(card) {
           <div>[ PAUSE ]</div>
         </div>
         <!-- BODY GAME -->
-        <div class="flex-1 flex justify-between items-center bg-contain bg-no-repeat bg-center bg-[#18181b]" :style="`background-image: url('${path.mainGameBg}')`">
+        <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b]" :style="`background-image: url('${path.mainGameBg}')`">
             <img class="h-1/2 -scale-x-100 ml-10" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" 
               :src="path.foxsterIdle" alt="monster-idle"> 
             <img class="h-1/2 mr-10" :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" 
@@ -252,8 +252,6 @@ function getCardSource(card) {
       src: url(./assets/font/2005_iannnnnAMD.ttf);
     }
     .thai-pix { font-family: "thai-pix"; 
-                font-size: 10000px;
-  
   }
     .m04b { font-family: "m04b", "thai-pix"; }
     .screen,.spacing {
