@@ -14,7 +14,7 @@ const back = ref(false)
 </script>
 
 <template>
-  <div class="w-screen h-screen" style="background-image: url(https://wallpaperaccess.com/full/1089608.png); background-size: cover;">
+  <div class="w-screen h-screen bg-zinc-900" style="background-image: url(https://wallpaperaccess.com/full/1089608.png); background-size: cover; ">
     <div v-show="showMainMenu" class="w-full h-full " >
       <div class="flex-col flex items-center w-full h-full justify-center">
         <!-- <h1 class="text-7xl justify-center flex text-center text-indigo-500">Animal Fight</h1> -->
@@ -34,17 +34,26 @@ const back = ref(false)
 
     <div v-show="showCharacterSelect" class="w-full h-full">
       <div class="flex-col flex items-center w-full h-full justify-center">
-        <h1 class="text-5xl justify-center flex mb-8" 
-        style="font-family: m04b;">Choose Character</h1>
-        <div class="flex flex-wrap justify-evenly">
+        <h1 class="text-5xl justify-center flex mb-8 text-white" 
+        style="font-family: m04b; filter: drop-shadow(5px 0 0 black) 
+        drop-shadow(0 5px 0 black)
+        drop-shadow(-5px 0 0 black) 
+        drop-shadow(0 -5px 0 black);">Choose Character</h1>
+
+        <div class="flex flex-col items-center">
+        <div class="flex flex-wrap space-x-10 ">
+
           <div class="pl-5 pr-6 pt-9 pb-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-[url('./assets/image/card1.png')] bg-center bg-cover" 
           style="cursor: pointer;">
-            <h2 class="justify-center flex text-3xl text-black" 
-            style="font-family: m04b;"><span style="text-shadow: -3px -3px 0 snow, 3px -3px 0 snow, -3px 3px 0 snow, 3px 3px 0 snow;">Bearior</span></h2>
+            <h2 class="justify-center flex text-3xl text-white" 
+            style="font-family: m04b;"><span style="filter: drop-shadow(5px 0 0 black) 
+        drop-shadow(0 5px 0 black)
+        drop-shadow(-5px 0 0 black) 
+        drop-shadow(0 -5px 0 black);">Bearior</span></h2>
             <img src="./assets/image/char1.png" alt="" 
             class="w-1/3" style="width: 256px; height: 256px;">
             <div  class="justify-center flex flex-col" style="font-family: m04b;">
-              <table class="text-center">
+              <table class="text-center text-white" style="text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;">
                 <tr>
                   <td>HP :</td>
                   <td>80000</td>
@@ -63,12 +72,15 @@ const back = ref(false)
 
           <div class="pl-5 pr-6 pt-9 pb-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-[url('./assets/image/card3.png')] bg-center bg-cover"
           style="cursor: pointer;">
-            <h2 class="justify-center flex text-3xl text-black " 
-            style="font-family: m04b;"><span style="text-shadow: -3px -3px 0 snow, 3px -3px 0 snow, -3px 3px 0 snow, 3px 3px 0 snow;">Racoon</span></h2>
+            <h2 class="justify-center flex text-3xl text-white" 
+            style="font-family: m04b;"><span style="filter: drop-shadow(5px 0 0 black) 
+        drop-shadow(0 5px 0 black)
+        drop-shadow(-5px 0 0 black) 
+        drop-shadow(0 -5px 0 black);">Racoon</span></h2>
             <img src="./assets/image/Sprite-0001.png" alt="" 
             class="w-1/3" style="width: 256px; height: 256px;">
             <div class="justify-center flex flex-col" style="font-family: m04b;">
-              <table class="text-center">
+              <table class="text-center text-white" style="text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;">
                 <tr>
                   <td>HP :</td>
                   <td>80000</td>
@@ -87,13 +99,16 @@ const back = ref(false)
 
           <div class="pl-5 pr-6 pt-9 pb-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-[url('./assets/image/card2.png')] bg-center bg-cover" 
           style="cursor: pointer;">
-            <h2 class="justify-center flex text-3xl text-black" 
-            style="font-family: m04b;"><span style="text-shadow: -3px -3px 0 snow, 3px -3px 0 snow, -3px 3px 0 snow, 3px 3px 0 snow;">Foxster</span></h2>
+            <h2 class="justify-center flex text-3xl text-white" 
+            style="font-family: m04b;"><span style="filter: drop-shadow(5px 0 0 black) 
+        drop-shadow(0 5px 0 black)
+        drop-shadow(-5px 0 0 black) 
+        drop-shadow(0 -5px 0 black);">Foxster</span></h2>
             <img src="./assets/image/wolf.png" alt="" 
             class="w-1/3" style="width: 256px; height: 256px;">
             <div class="justify-center flex flex-col" 
             style="font-family: m04b;">
-              <table class="text-center">
+              <table class="text-center text-white" style="text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;">
                 <tr>
                   <td>HP :</td>
                   <td>500</td>
@@ -110,9 +125,10 @@ const back = ref(false)
             </div>
           </div>
         </div>
-        <div class="w-1/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer m-4" @click="back = !back; showCharacterSelect = !showCharacterSelect ; showMainMenu = ! showMainMenu"  >
+        <div class="w-1/12 flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer m-4 mt-10" @click="back = !back; showCharacterSelect = !showCharacterSelect ; showMainMenu = ! showMainMenu"  >
         <img src="./assets/image/back.png" alt="" class="w-full h-full">
       </div>
+    </div>
       </div>
     </div>
 
@@ -142,8 +158,11 @@ const back = ref(false)
       <div class="justify-center flex ">
         <img src="./assets/image/howtoplay.png" alt="" class="w-full h-full">
       </div>
-      <div class="imageContainer justify-center p-10" style="width: 480px; height: 500px;">
-       <ol class="text-black text-2xl font-semibold tracking-wider leading-snug" style="font-family: thai-pix;">
+      <div class="imageContainer flex flex-col justify-center p-10" style="width: 480px; height: 500px; ">
+       <ol class="text-black text-4xl font-semibold tracking-wider leading-snug overflow-y-scroll" style="font-family: thai-pix; filter: drop-shadow(0.5px 0 0 white) 
+        drop-shadow(0 0.5px 0 white)
+        drop-shadow(-0.5px 0 0 white) 
+        drop-shadow(0 -0.5px 0 white);">
         <li>- จะมีตัวละครให้ผู้เล่นเลือกเล่นทั้งหมด 3 ตัว โดยแต่ละตัวละครจะมีค่า Stat ที่ต่างกันไป ประกอบด้วย ค่าพลังชีวิต ค่าอัตราคริ ค่าโชคชะตา</li>
         <li>- หลังจากเลือกตัวละครเสร็จ ก็จะได้ต่อสู้กับมอนสเตอร์ โดยผู้เล่นจะต้องกด Attack ซึ่งจะมีการสลับกันสุ่มไพ่ของแต่ละฝั่งเพื่อนำค่าของไพ่มาเปรียบเทียบกัน</li>
         <li>- ไพ่ที่สุ่มจากน้อยไปมากจะประกอบด้วย A 2 3 4 5 6 7 8 9 10 J Q K</li>
@@ -152,7 +171,7 @@ const back = ref(false)
         <li>- เกมนี้จะจบก็ต่อเมื่อผู้เล่นมีค่าพลังชีวิตเป็นศูนย์ เกมก็จะแสดงผลเลเวลสูงสุดที่ผู้เล่นเล่นถึง</li>
        </ol>
       </div>
-      <div class="w-1/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer" @click="back = !back; showHowToPlay = !showHowToPlay ; showMainMenu = ! showMainMenu"  >
+      <div class="w-1/12 flex flex-col transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer" @click="back = !back; showHowToPlay = !showHowToPlay ; showMainMenu = ! showMainMenu"  >
         <img src="./assets/image/back.png" alt="" class="w-full h-full" >
       </div>
     </div>
@@ -183,10 +202,19 @@ const back = ref(false)
        background-position-x: center;
        background-image: url(./assets/image/bg2.png);
   }
+
   br {
   margin: px;
   display: block;
   font-size: 24%;
-}
-  
+  }
+
+  ::-webkit-scrollbar {
+  width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+  background: black; 
+  border-radius: 10px;
+  }
 </style>
