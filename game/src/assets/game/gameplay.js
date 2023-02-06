@@ -3,7 +3,7 @@ import { popup,unpopup } from "../../main.js"
 import { ref } from 'vue'
 
 //DEFAULT DYNAMIC VALUE
-const player = ref(new Player())
+const player = ref(new Player()) 
 const monster = ref("")
 const level = ref(1)
 const turn = ref(0) //0 = PLAYER, 1 = MONSTER, 2 = SUMMARY
@@ -13,14 +13,14 @@ const card = ref({
     monster: { name: "", damage: 0 }
 })
 //ARRAY
-const turns = [ "PLAYER","MONSTER", "SUMMARY" ]
+const turns = [ "PLAYER","MONSTER", "SUMMARY" ] 
 const wins = [ "PLAYER","MONSTER","DRAW" ]
 const cards = [ "A", "2","3","4","5","6","7","8","9","10","J","Q","K"]
 
 function nextTurn() {
     if (turn.value === 0) {
         monsterTurn()
-        turn.value++
+        turn.value++ //TURN 1
     } else if (turn.value === 1) {
         summaryTurn()
         turn.value++        
@@ -75,6 +75,8 @@ function getCard() {
         else return getCardByNumber(1)
     }
 }
+
+
 function randomCard(entity) {
     const damage = Math.floor(Math.random()*cards.length) //0-12
     entity["name"] = cards[damage]
