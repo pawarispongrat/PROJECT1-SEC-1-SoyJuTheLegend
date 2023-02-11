@@ -12,12 +12,14 @@ const show = ref({
     summaryAttack: false,
     monsterDamage: false,
     playerDamage: false,
+    playerDead: false,
     //BG
     mainBackground: true,
     howToPlay: false,
     mainMenu: true,
     characterSelect: false,
-    mainGame: false
+    mainGame: false,
+    nameEmptyAlert: false
 })
 
 function setShow(id,isShow) {
@@ -48,6 +50,9 @@ function mainGame(character=0){
     player.value.selectCharacter(character)
 }
 
+function emptyName() {
+    popup("nameEmptyAlert",3000)
+}
 
 function unpopup(id,delay) {
     setShow(id,false)
@@ -65,7 +70,7 @@ function init() {
     ]
     characters = [
         new Character("Foxster",250,3,0),
-        new Character("Bearior",500,1,1),
+        new Character("Bearior",20,1,1),
         new Character("Raccoon",250,0,3)        
     ]
 
@@ -76,5 +81,5 @@ function init() {
 }
 
 export { 
-    unpopup,popup, init,characters,monsters,show,playBtn,howToPlayBtn,backtoMain,mainGame
+    unpopup,popup, init,characters,monsters,show,playBtn,howToPlayBtn,backtoMain,mainGame,emptyName
 }

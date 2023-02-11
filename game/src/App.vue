@@ -1,5 +1,5 @@
 <script setup>
-import { init,show,playBtn,howToPlayBtn,backtoMain,characters,mainGame } from "./main.js"
+import { init,show,playBtn,howToPlayBtn,backtoMain,characters,mainGame,emptyName } from "./main.js"
 import path from "./assets/path_data.json"
 import { 
   player,monster,level,turn,turns,win,wins,
@@ -37,6 +37,13 @@ function getCardSource(card) {
   
     <div v-show="show.characterSelect" class="w-full h-full">
       <div class="flex-col flex items-center w-full h-full justify-center">
+        <div class=" text-center py-4 lg:px-4 text-black m04b absolute top-8" v-show="show.nameEmptyAlert">
+          <div class="p-2 bg-red-600 items-center text-white leading-none lg:rounded-full flex lg:inline-flex"
+            role="alert">
+            <span class="flex rounded-full bg-white uppercase px-2 py-1 text-xs font-bold mr-3 text-black">Error!</span>
+            <span class="font-semibold mr-2 text-left flex-auto">Enter Your Name</span>
+          </div>
+        </div>
         <h1 class="text-5xl justify-center flex mb-8 text-current m04b choose-character">Choose Character</h1>
         <div class="flex flex-col items-center">
           <div class="flex items-center py-4  mb-8">
@@ -44,7 +51,7 @@ function getCardSource(card) {
             <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text" placeholder="YOURNAME" maxlength="18">
           </div>
         <div class="flex flex-wrap space-x-4">
-          <div @click="mainGame(1)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
+          <div @click="player.name === '' ? emptyName() : mainGame(1)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
               :style="`background-image: url('${path.bgCard1}')`">
             <h2 class="justify-center flex text-3xl text-black m04b">
               <span class="character-name text-white">Bearior</span>
@@ -68,7 +75,7 @@ function getCardSource(card) {
             </div>
           </div>
   
-          <div @click="mainGame(2)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
+          <div @click="player.name === '' ? emptyName() : mainGame(2)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
             :style="`background-image: url('${path.bgCard2}')`">
             <h2 class="justify-center flex text-3xl text-black m04b">
               <span class="character-name text-white">Raccoon</span>
@@ -92,7 +99,7 @@ function getCardSource(card) {
             </div>
           </div>
   
-          <div @click="mainGame(0)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover" 
+          <div @click="player.name === '' ? emptyName() : mainGame(0)" class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover" 
               :style="`background-image: url('${path.bgCard3}')`"
               style="cursor: pointer;">
             <h2 class="justify-center flex text-3xl text-black m04b">
@@ -239,7 +246,16 @@ function getCardSource(card) {
             </div>
           </div>
       </div>
-    </div>
+      <div class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen -space-x-5" v-show="show.playerDead" >
+        <div>
+          <img src="./assets/background/icon/gameover.png" alt="" class="">
+        </div> 
+          <div class="justify-center m-6 p-2 space-x-2 ">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl">TRY AGAIN</button>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl">BACK TO MAIN</button>
+        </div>
+      </div>
+    </div>  
   </div>  
 </template>
 
