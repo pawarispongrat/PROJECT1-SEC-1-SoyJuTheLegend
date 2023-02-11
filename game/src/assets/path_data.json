@@ -9,16 +9,15 @@
     
     "howToPlayBg":"src/assets/background/image/how-to-play-bg.png",
     "animal_battle":"src/assets/background/image/animal_battle.png",
-    "howToPlay": "src/assets/background/image/howtoplay.png",
-    "mainBackground": "https://wallpapercave.com/wp/wp11435782.png",
+    "howToPlay": "src/assets/background/button/how-to.png",
+    "mainBackground": "src/assets/background/menu-map.png",
     "card": "src/assets/background/card/%card%.png",
     "bgCard1": "src/assets/background/image/card1.png",
     "bgCard2": "src/assets/background/image/card2.png",
     "bgCard3": "src/assets/background/image/card3.png",
     
-    "play":"src/assets/background/image/startBtn.png",
+    "play":"src/assets/background/button/start.png",
     "back":"src/assets/background/image/back.png",
     "pause": "src/assets/background/button/pause.png"
-    
-    
+ 
 }
