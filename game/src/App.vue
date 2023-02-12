@@ -168,7 +168,7 @@ function getCardSource(card) {
         <!-- BODY GAME -->
         <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b]" :style="`background-image: url('${path.mainGameBg}')`">
           <img class="h-1/2 ml-14 -scale-x-100" :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" 
-              :src="path.bearior" alt="player-idle">  
+              :src="player.getImage(player.character)" alt="player-idle">  
           <img class="h-1/3 mr-14" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" 
               :src="monster.getImage()" :alt="monster.getImage()">  
         </div>

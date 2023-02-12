@@ -3,8 +3,8 @@
     "foxsterIcon": "images/icon/character-icon-2.png",
     "rapterIcon": "images/icon/rapter.png",
 
-    "foxsterIdle": "images/character/foxster-idle.gif",
-    "bearior":"images/character/bearior.gif", 
+    "Foxster": "images/character/foxster-idle.gif",
+    "Bearior":"images/character/bearior.gif", 
     "monster": "images/monster/%monster%.gif",
     "mainGameBg": "images/bg/main-map.png",
     

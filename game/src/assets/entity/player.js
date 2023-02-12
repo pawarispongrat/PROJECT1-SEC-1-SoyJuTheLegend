@@ -1,4 +1,5 @@
 import { popup,characters } from "../../main.js"
+import path from "../path_data.json"
 import { card,monster } from "../game/gameplay.js"
 class Player {
     constructor() {
@@ -15,6 +16,16 @@ class Player {
         monster.value.health -= this.damage
         monster.value.dead()
         popup("playerAttack",1500)
+    }
+    getImage(char) {
+        console.log(char)
+        if(char === "Foxster") {
+            return path.Foxster
+        } else if(char === "Bearior") {
+            return path.Bearior
+        } else {
+            return path.Raccoon
+        }
     }
     getPercentHealth() {
         const health = (this.health/this.maxHealth)*100 
