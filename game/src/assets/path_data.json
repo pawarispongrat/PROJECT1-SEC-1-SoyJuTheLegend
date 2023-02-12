@@ -4,6 +4,7 @@
     "rapterIcon": "src/assets/background/icon/rapter.png",
 
     "foxsterIdle": "src/assets/background/character/foxster-idle.gif",
+    "bearior":"src/assets/background/character/bearior.gif", 
     "monster": "src/assets/background/monster/%monster%.gif",
     "mainGameBg": "src/assets/background/main-map.png",
     
@@ -17,7 +18,7 @@
     "bgCard3": "src/assets/background/image/card3.png",
     
     "play":"src/assets/background/button/start.png",
-    "back":"src/assets/background/image/back.png",
+    "back":"src/assets/background/button/back.png",
     "pause": "src/assets/background/button/pause.png"
  
 }

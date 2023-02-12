@@ -84,17 +84,17 @@ function randomCardMonster(entity) {
 }
 
 
-
 function randomCardPlayer(entity){
     const random = Math.floor(Math.random() * 100)
     const percentageluck = player.value.luck
     const percentagecri = player.value.crit
     const breakpoint = cards.length-4
+    const critdamage = 1.5
   
     function randomcri(damage) {
       const percentage = Math.floor(Math.random() * 100)
       if (percentagecri > percentage) {
-        return (damage+1)*1.5
+        return (damage+1)*critdamage
       } else {
         return damage+1
       }
@@ -110,8 +110,6 @@ function randomCardPlayer(entity){
       entity["damage"] = randomcri(randomluck)
     }
 }
-
-
 
 export { 
     monster,player,level,turn,turns,cards,card,wins,win,
