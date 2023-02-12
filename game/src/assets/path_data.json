@@ -1,24 +1,25 @@
 {
-    "beariorIcon": "src/assets/background/icon/character-icon-1.png",
-    "foxsterIcon": "src/assets/background/icon/character-icon-2.png",
-    "rapterIcon": "src/assets/background/icon/rapter.png",
+    "beariorIcon": "images/icon/character-icon-1.png",
+    "foxsterIcon": "images/icon/character-icon-2.png",
+    "rapterIcon": "images/icon/rapter.png",
 
-    "foxsterIdle": "src/assets/background/character/foxster-idle.gif",
-    "bearior":"src/assets/background/character/bearior.gif", 
-    "monster": "src/assets/background/monster/%monster%.gif",
-    "mainGameBg": "src/assets/background/main-map.png",
+    "foxsterIdle": "images/character/foxster-idle.gif",
+    "bearior":"images/character/bearior.gif", 
+    "monster": "images/monster/%monster%.gif",
+    "mainGameBg": "images/bg/main-map.png",
     
-    "howToPlayBg":"src/assets/background/image/how-to-play-bg.png",
-    "animal_battle":"src/assets/background/image/animal_battle.png",
-    "howToPlay": "src/assets/background/button/how-to.png",
-    "mainBackground": "src/assets/background/menu-map.png",
-    "card": "src/assets/background/card/%card%.png",
-    "bgCard1": "src/assets/background/image/card1.png",
-    "bgCard2": "src/assets/background/image/card2.png",
-    "bgCard3": "src/assets/background/image/card3.png",
+    "howToPlayBg":"images/image/how-to-play-bg.png",
+    "animal_battle":"images/image/animal_battle.png",
+    "howToPlay": "images/button/how-to.png",
+    "mainimages": "images/bg/menu-map.png",
+    "gameOver" : "images/icon/gameover.png",
+    "card": "images/card/%card%.png",
+    "bgCard1": "images/image/card1.png",
+    "bgCard2": "images/image/card2.png",
+    "bgCard3": "images/image/card3.png",
     
-    "play":"src/assets/background/button/start.png",
-    "back":"src/assets/background/button/back.png",
-    "pause": "src/assets/background/button/pause.png"
+    "play":"images/button/start.png",
+    "back":"images/button/back.png",
+    "pause": "images/button/pause.png"
  
 }

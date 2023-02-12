@@ -14,9 +14,9 @@ function getCardSource(card) {
   //src/assets/background/card/K.png
 }
 </script>
-
+<!-- :style="`background-image: url('${path.mainimages}');`" -->
 <template>
-  <div v-show="show.mainBackground" class="w-screen h-screen bg-cover" :style="`background-image: url('${path.mainBackground}');`">
+  <div v-show="show.mainBackground" class="w-screen h-screen bg-cover " :style="`background-image: url('${path.mainimages}');`">
     <div v-show="show.mainMenu" class="w-full h-full ">
       <div class="flex-col flex items-center w-full h-full justify-center">
         <div class="flex justify-center w-1/2">
@@ -251,7 +251,7 @@ function getCardSource(card) {
       </div>
       <div class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen -space-x-5" v-show="show.playerDead" >
         <div>
-          <img src="./assets/background/icon/gameover.png" alt="" >
+          <img :src="path.gameOver" alt="" >
         </div> 
           <div class="justify-center m-6 p-2 space-x-2 ">
         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl" @click="tryagain()">TRY AGAIN</button>
