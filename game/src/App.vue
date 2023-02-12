@@ -263,7 +263,6 @@ function getCardSource(card) {
             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl w-1/4" @click="backtogame()">RESUME</button>
             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl w-1/4" @click="backtoMain()">BACK TO MAIN</button>
           </div>
-
         </div>
     </div>  
   </div>  
