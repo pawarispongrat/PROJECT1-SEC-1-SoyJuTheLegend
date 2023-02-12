@@ -167,39 +167,17 @@ function getCardSource(card) {
         </div>
         <!-- BODY GAME -->
         <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b]" :style="`background-image: url('${path.mainGameBg}')`">
-            <img class="h-1/3 -scale-x-100 ml-10" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" 
-              :src="monster.getImage()" :alt="monster.getImage()"> 
-            <img class="h-1/2 mr-10" :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" 
-              :src="path.bearior" alt="player-idle">
+          <img class="h-1/2 ml-14 -scale-x-100" :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" 
+              :src="path.bearior" alt="player-idle">  
+          <img class="h-1/3 mr-14" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" 
+              :src="monster.getImage()" :alt="monster.getImage()">  
         </div>
         <!-- ACTION BAR -->
         <div class="flex flex-wrap items-center justify-center p-5 bg-zinc-900 max-lg:flex-col text-2xl">
           <!-- ATTACK BTN -->
           <button :disabled="!show.attackButton" @click="playerTurn()" class="flex-1 py-8 mr-5 w-full bg-emerald-500 text-white shadow-md spacing disabled:bg-zinc-600" disabled>ATTACK</button>
-          <!-- MONSTER -->
-          <div class="flex flex-1 py-3 w-full">
-            <div class="shadow-md w-32 h-32  bg-zinc-800 flex justify-center items-end">
-              <img class="opacity-85 w-32 h-20" :src="path.rapterIcon" alt="monster-icon">
-            </div>
-            <div class="flex-1 grid space-y-1 items-center ml-5">
-              <p class="flex flex-col">
-                <span class="font-bold text-red-500 drop-shadow-lg" v-text="monster.name"></span>
-                <div>
-                  <span>{{ `HP: ${monster.health}` }}</span>
-                  <span v-show="show.playerAttack" class="text-red-600">{{ `-${player.damage}` }}</span>
-                  <span>{{ `/${monster.maxHealth}` }} </span>
-                </div>
-              </p>
-              <!-- HEALTH BAR -->
-              <div class=" bg-zinc-800 h-7 shadow-md mr-3">
-                <div class="bg-red-500 h-7 mr-3" :style="`width: ${monster.getPercentHealth()}%`"></div>
-              </div>            
-            </div> 
-          </div>
-          <!-- VS -->
-          <p>VS</p>  
           <!-- PLAYER -->
-          <div class="flex flex-1 w-full py-3 md:ml-5">    
+          <div class="flex flex-1 w-full py-3">    
             <div class="shadow-md w-32 h-32 bg-zinc-800">
               <img class="opacity-85" :src="path.foxsterIcon" alt="player-icon">
             </div>            
@@ -217,7 +195,29 @@ function getCardSource(card) {
                 <div class="bg-emerald-400 h-7 mr-3" :style="`width: ${player.getPercentHealth()}%`"></div>
               </div>            
             </div>
-          </div>          
+          </div>    
+          <!-- VS -->
+          <p>VS</p>
+          <!-- MONSTER -->
+          <div class="flex flex-1 py-3 w-full md:ml-5">
+            <div class="shadow-md w-32 h-32  bg-zinc-800 flex justify-center items-end">
+              <img class="opacity-85 w-32 h-20" :src="path.rapterIcon" alt="monster-icon">
+            </div>
+            <div class="flex-1 grid space-y-1 items-center ml-5">
+              <p class="flex flex-col">
+                <span class="font-bold text-red-500 drop-shadow-lg" v-text="monster.name"></span>
+                <div>
+                  <span>{{ `HP: ${monster.health}` }}</span>
+                  <span v-show="show.playerAttack" class="text-red-600">{{ `-${player.damage}` }}</span>
+                  <span>{{ `/${monster.maxHealth}` }} </span>
+                </div>
+              </p>
+              <!-- HEALTH BAR -->
+              <div class=" bg-zinc-800 h-7 shadow-md mr-3">
+                <div class="bg-red-500 h-7 mr-3" :style="`width: ${monster.getPercentHealth()}%`"></div>
+              </div>            
+            </div> 
+          </div>        
     </div>
     <!-- CARD -->
     <div class="flex">
