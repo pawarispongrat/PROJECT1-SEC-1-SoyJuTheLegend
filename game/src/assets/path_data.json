@@ -3,8 +3,9 @@
     "foxsterIcon": "images/icon/character-icon-2.png",
     "rapterIcon": "images/icon/rapter.png",
 
-    "Foxster": "images/character/foxster-idle.gif",
+    "Foxster": "images/character/foxster.gif",
     "Bearior":"images/character/bearior.gif", 
+    "Raccoon": "images/character/raccoon.gif",
     "monster": "images/monster/%monster%.gif",
     "mainGameBg": "images/bg/main-map.png",
     
@@ -12,7 +13,7 @@
     "animal_battle":"images/image/animal_battle.png",
     "howToPlay": "images/button/how-to.png",
     "mainimages": "images/bg/menu-map.png",
-    "gameOver" : "images/icon/gameover.png",
+    "gameOver" : "images/image/gameover.png",
     "card": "images/card/%card%.png",
     "bgCard1": "images/image/card1.png",
     "bgCard2": "images/image/card2.png",

@@ -136,10 +136,10 @@ function getCardSource(card) {
     <!-- how to play -->
       <div class="flex-col flex items-center w-full h-full justify-center" v-show="show.howToPlay">
         <div class="justify-center flex">
-          <img :src="path.howToPlay" alt="" class="w-full h-full">
+          <img :src="path.howToPlay" alt="" class="w-[30rem] h-full">
         </div>
-        <div class="flex flex-col justify-center p-[3rem] w-[480px] h-[500px]" :style="`background-image: url('${path.howToPlayBg}'); background-position: center; background-repeat: no-repeat; `">
-        <ul class="text-black text-4xl font-semibold tracking-wider overflow-y-scroll thai-pix stroke-text">
+        <div class="flex flex-col justify-center p-[3.4rem] w-[30rem] h-[31rem]" :style="`background-image: url('${path.howToPlayBg}'); background-position: center; background-repeat: no-repeat; `">
+        <ul class="text-black text-4xl font-semibold tracking-wider overflow-y-scroll thai-pix">
           <li>* จะมีตัวละครให้ผู้เล่นเลือกเล่นทั้งหมด 3 ตัว โดยแต่ละตัวละครจะมีค่าสถานะ ที่ต่างกันไป ประกอบด้วย ค่าพลังชีวิต ค่าอัตราคริ ค่าโชคชะตา</li>
           <li>* หลังจากเลือกตัวละครเสร็จ ก็จะได้ต่อสู้กับมอนสเตอร์ โดยผู้เล่นจะต้องกด Attack ซึ่งจะมีการสลับกันสุ่มไพ่ของแต่ละฝั่งเพื่อนำค่าของไพ่มาเปรียบเทียบกัน</li>
           <li>* ไพ่ที่สุ่มจากน้อยไปมากจะประกอบด้วย A 2 3 4 5 6 7 8 9 10 J Q K</li>
@@ -148,7 +148,7 @@ function getCardSource(card) {
           <li>* เกมนี้จะจบก็ต่อเมื่อผู้เล่นมีค่าพลังชีวิตเป็นศูนย์ เกมก็จะแสดงผลเลเวลสูงสุดที่ผู้เล่นเล่นถึง</li>
         </ul>
         </div>
-        <div class="w-1/12 flex flex-col transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer" @click="backtoMain()"  >
+        <div class="w-32 flex flex-col transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer" @click="backtoMain()"  >
           <img :src="path.back" alt="back-btn" class="w-full h-full" >
         </div>
       </div>
@@ -161,21 +161,21 @@ function getCardSource(card) {
             <p>TURN: {{ turns[turn] }}</p>
           </div>
           <!-- pause -->
-          <div class="h-1/2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer" @click="pause()">
-            <img class="h-full" :src="path.pause" alt="pause-btn " >
-          </div>
+          <button :disabled="show.playerDead" class="h-1/2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer disabled:invisible" @click="pause()">
+              <img class="h-full" :src="path.pause" alt="pause-btn" >
+          </button>
         </div>
         <!-- BODY GAME -->
         <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b]" :style="`background-image: url('${path.mainGameBg}')`">
           <img class="h-1/2 ml-14 -scale-x-100" :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" 
-              :src="player.getImage(player.character)" alt="player-idle">  
+              :src="player.getImage()" alt="player-idle">  
           <img class="h-1/3 mr-14" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" 
               :src="monster.getImage()" :alt="monster.getImage()">  
         </div>
         <!-- ACTION BAR -->
         <div class="flex flex-wrap items-center justify-center p-5 bg-zinc-900 max-lg:flex-col text-2xl">
           <!-- ATTACK BTN -->
-          <button :disabled="!show.attackButton" @click="playerTurn()" class="flex-1 py-8 mr-5 w-full bg-emerald-500 text-white shadow-md spacing disabled:bg-zinc-600" disabled>ATTACK</button>
+          <button :disabled="!show.attackButton" @click="playerTurn()" class="flex-1 py-8 mr-5 w-full bg-emerald-500 text-white shadow-md spacing disabled:bg-zinc-600 hover:bg-teal-600" disabled>ATTACK</button>
           <!-- PLAYER -->
           <div class="flex flex-1 w-full py-3">    
             <div class="shadow-md w-32 h-32 bg-zinc-800">
@@ -249,19 +249,19 @@ function getCardSource(card) {
             </div>
           </div>
       </div>
-      <div class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen -space-x-5" v-show="show.playerDead" >
+      <div class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen" v-show="show.playerDead" >
         <div>
-          <img :src="path.gameOver" alt="" >
+          <img :src="path.gameOver" alt="" class="w-96" >
         </div> 
-          <div class="justify-center m-6 p-2 space-x-2 ">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl" @click="tryagain()">TRY AGAIN</button>
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl" @click="backtoMain()">BACK TO MAIN</button>
+          <div class="justify-center m-8 space-x-5">
+        <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl" @click="tryagain()">TRY AGAIN</button>
+        <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl" @click="backtoMain()">BACK TO MAIN</button>
         </div> 
       </div>
-      <div class="flex  justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen -space-x-5" v-show="show.pause">
-          <div class="justify-center m-6 p-2 space-y-5 flex flex-col items-center w-1/2">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl w-1/4" @click="backtogame()">RESUME</button>
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4  hover:border-green-700 rounded text-xl w-1/4" @click="backtoMain()">BACK TO MAIN</button>
+      <div class="flex  justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen" v-show="show.pause">
+          <div class="justify-center space-y-5 flex flex-col items-center w-96">
+            <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4  text-xl w-1/2" @click="backtogame()">RESUME</button>
+            <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl w-1/2" @click="backtoMain()">BACK TO MAIN</button>
           </div>
         </div>
     </div>  
@@ -308,11 +308,10 @@ function getCardSource(card) {
     }
 
     ::-webkit-scrollbar {
-      width: 5px;
+      width: 10px;
     }
     ::-webkit-scrollbar-thumb {
       background: black; 
-      border-radius: 10px;
     }
     .choose-character {
       filter: drop-shadow(1px 0 0 black) 
