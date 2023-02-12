@@ -37,11 +37,11 @@ function nextTurn() {
 }
 function playerTurn() {
     unpopup("attackButton")
-    randomCard(card.value.player)
+    randomCardPlayer(card.value.player)
     popup("cardAttack")
 }
 function monsterTurn() {
-    randomCard(card.value.monster)
+    randomCardMonster(card.value.monster)
     popup("cardAttack")
 }
 
@@ -77,11 +77,41 @@ function getCard() {
 }
 
 
-function randomCard(entity) {
+function randomCardMonster(entity) {
     const damage = Math.floor(Math.random()*cards.length) //0-12
     entity["name"] = cards[damage]
     entity["damage"] = damage+1
 }
+
+
+
+function randomCardPlayer(entity){
+    const random = Math.floor(Math.random() * 100)
+    const percentageluck = player.value.luck
+    const percentagecri = player.value.crit
+    const breakpoint = cards.length-4
+  
+    function randomcri(damage) {
+      const percentage = Math.floor(Math.random() * 100)
+      if (percentagecri > percentage) {
+        return (damage+1)*1.5
+      } else {
+        return damage+1
+      }
+    }
+  
+    if (random < percentageluck) {
+      const randomluck = Math.floor(Math.random() * 4)+breakpoint
+      entity["name"] = cards[randomluck]
+      entity["damage"] = randomcri(randomluck)
+    } else {
+      const randomluck = Math.floor(Math.random() * breakpoint)
+      entity["name"] = cards[randomluck]
+      entity["damage"] = randomcri(randomluck)
+    }
+}
+
+
 
 export { 
     monster,player,level,turn,turns,cards,card,wins,win,

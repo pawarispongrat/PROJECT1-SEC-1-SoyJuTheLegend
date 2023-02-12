@@ -69,9 +69,9 @@ function init() {
         new Monster("Rapter",100,"rapter")
     ]
     characters = [
-        new Character("Foxster",250,3,0),
-        new Character("Bearior",20,1,1),
-        new Character("Raccoon",250,0,3)        
+        new Character("Foxster",250,50,99),
+        new Character("Bearior",300,50,50),
+        new Character("Raccoon",250,99,50)        
     ]
 
 
