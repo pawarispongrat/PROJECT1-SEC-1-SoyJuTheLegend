@@ -5,6 +5,7 @@ import { ref } from "vue"
 
 let monsters = []
 let characters = []
+
 const show = ref({
     //ELEMENT
     cardAttack: false,
@@ -13,6 +14,7 @@ const show = ref({
     monsterDamage: false,
     playerDamage: false,
     playerDead: false,
+    pause:false,
     //BG
     mainBackground: true,
     howToPlay: false,
@@ -31,6 +33,7 @@ function playBtn() {
     setShow("mainMenu",false)
 }
 
+
 function howToPlayBtn() {
     setShow("howToPlay",true)
     setShow("mainMenu",false)
@@ -38,7 +41,12 @@ function howToPlayBtn() {
 function backtoMain(){
     setShow("howToPlay",false)
     setShow("characterSelect",false)
+    setShow("playerDead",false)
+    setShow("mainGame",false)
     setShow("mainMenu",true)
+    setShow("mainBackground",true)
+    setShow("pause",false)
+    player.value.name = ""
 }
 
 function mainGame(character=0){
@@ -48,6 +56,29 @@ function mainGame(character=0){
     setShow("mainBackground",false)
     setShow("mainGame",true)
     player.value.selectCharacter(character)
+}
+
+function backtogame(){
+    setShow("characterSelect",false)
+    setShow("playerDead",false)
+    setShow("mainGame",true)  
+    setShow("pause",false)
+    
+}
+
+function tryagain(){
+    setShow("mainBackground",true)
+    setShow("characterSelect",true)
+    setShow("playerDead",false)
+    setShow("mainGame",false)
+    setShow("pause",false)
+    player.value.name = ""
+
+    
+}
+
+function pause(){
+    setShow("pause",true)
 }
 
 function emptyName() {
@@ -69,17 +100,14 @@ function init() {
         new Monster("Rapter",100,"rapter")
     ]
     characters = [
-        new Character("Foxster",250,3,0),
-        new Character("Bearior",20,1,1),
-        new Character("Raccoon",250,0,3)        
+        new Character("Foxster",250,3,99),
+        new Character("Bearior",1,1,1),
+        new Character("Raccoon",250,99,3)        
     ]
 
-
-    // player.value.name = "RewLegendary"
-    // player.value.selectCharacter(0)
     monster.value = monsters[0]
 }
 
 export { 
-    unpopup,popup, init,characters,monsters,show,playBtn,howToPlayBtn,backtoMain,mainGame,emptyName
+    unpopup,popup, init,characters,monsters,show,playBtn,howToPlayBtn,backtoMain,mainGame,emptyName,backtogame,pause, tryagain
 }
