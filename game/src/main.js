@@ -2,7 +2,7 @@ import { Character } from "./assets/entity/character.js"
 import { Monster } from "./assets/entity/monster.js"
 import { player,monster } from "./assets/game/gameplay.js"
 import { ref } from "vue"
-
+import path from "./assets/path_data.json"
 let monsters = []
 let characters = []
 
@@ -100,9 +100,9 @@ function init() {
         new Monster("Rapter",100,"rapter")
     ]
     characters = [
-        new Character("Foxster",250,3,99),
-        new Character("Bearior",1,1,1),
-        new Character("Raccoon",250,99,3)        
+        new Character(0,"Foxster",250,3,99,path.bgCard1,path.foxsterIcon),
+        new Character(1,"Bearior",1,1,1,path.bgCard2,path.beariorIcon),
+        new Character(2,"Raccoon",250,99,3,path.bgCard3,path.beariorIcon)        
     ]
 
     monster.value = monsters[0]
