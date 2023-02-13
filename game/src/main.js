@@ -100,9 +100,9 @@ function init() {
         new Monster("Rapter",100,"rapter")
     ]
     characters = [
-        new Character(0,"Foxster",250,3,99,path.bgCard1,path.foxsterIcon),
-        new Character(1,"Bearior",1,1,1,path.bgCard2,path.beariorIcon),
-        new Character(2,"Raccoon",250,99,3,path.bgCard3,path.beariorIcon)        
+        new Character(0,"Foxster",250,3,99,path.bgCard1,path.foxsterIcon,path.Foxster),
+        new Character(1,"Bearior",1,1,1,path.bgCard2,path.beariorIcon,path.Bearior),
+        new Character(2,"Raccoon",250,99,3,path.bgCard3,path.raccoonIcon,path.Raccoon)        
     ]
 
     monster.value = monsters[0]

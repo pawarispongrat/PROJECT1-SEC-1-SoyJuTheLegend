@@ -1,6 +1,7 @@
 {
-    "beariorIcon": "images/icon/character-icon-1.png",
-    "foxsterIcon": "images/icon/character-icon-2.png",
+    "beariorIcon": "images/icon/bearior.png",
+    "foxsterIcon": "images/icon/foxster.png",
+    "raccoonIcon": "images/icon/raccoon.png",
 
     "rapterIcon": "images/icon/rapter.png",
 

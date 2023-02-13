@@ -67,30 +67,32 @@ let locations = [
           </div>
 
 
-          <div class="flex space-x-4 flex-row">
-            <div v-for="(item, id) in characters" :key="index">
+          <div class="flex space-x-4 flex-wrap">
+            <div v-for="(item, index) in characters" :key="index">
               <div @click="player.name.trim() === '' ? emptyName() : mainGame(item.id)"
-                class="pl-5 pr-6 py-9 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
+                class="px-12 py-[3.25rem] rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
                 :style="`background-image: url('${item.bg}')`">
-                <h2 class="justify-center flex text-3xl text-black m04b">
-                  <span class="character-name text-white">{{ item.character }}</span>
-                </h2>
-                <img :src="item.icon" alt="" class="w-1/3" style="width: 256px; height: 256px;">
-                <div class="justify-center flex flex-col m04b">
-                  <table class="shadow-table text-center text-white">
-                    <tr>
-                      <td>HP :</td>
-                      <td>{{ item.health }}</td>
-                    </tr>
-                    <tr>
-                      <td>CRIT :</td>
-                      <td>{{ item.crit }}</td>
-                    </tr>
-                    <tr>
-                      <td>LUCK :</td>
-                      <td>{{ item.luck }}</td>
-                    </tr>
-                  </table>
+                <div class="space-y-3">
+                  <h2 class="flex text-3xl text-black m04b">
+                    <span class="character-name text-white">{{ item.character }}</span>
+                  </h2>
+                  <img :src="item.icon" alt="" class="w-full h-full bg-white bg-opacity-60">
+                  <div class="flex flex-col items-center m04b">
+                    <table class="shadow-table text-right text-white ">
+                      <tr>
+                        <td class="text-left">HP :</td>
+                        <td>{{ item.health }}</td>
+                      </tr>
+                      <tr>
+                        <td>CRIT :</td>
+                        <td>{{ item.crit }}</td>
+                      </tr>
+                      <tr>
+                        <td>LUCK :</td>
+                        <td>{{ item.luck }}</td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -162,7 +164,7 @@ let locations = [
       <!-- PLAYER -->
       <div class="flex flex-1 w-full py-3">
         <div class="shadow-md w-32 h-32 bg-zinc-800">
-          <img class="opacity-85" :src="path.foxsterIcon" alt="player-icon">
+          <img class="opacity-85" :src="player.getIcon()" alt="player-icon">
         </div>
         <div class="flex-1 grid space-y-1 items-center ml-5">
           <p class="flex flex-col">
@@ -170,7 +172,7 @@ let locations = [
           <div>
             <span>{{ `HP: ${player.health}` }}</span>
             <span v-show="show.monsterAttack" class="text-red-600">{{ `-${monster.damage}` }}</span>
-            <span>{{`/${player.maxHealth} (${player.character})` }} </span>
+            <span>{{`/${player.maxHealth} (${player.character.character})` }} </span>
           </div>
           </p>
           <!-- HEALTH BAR -->

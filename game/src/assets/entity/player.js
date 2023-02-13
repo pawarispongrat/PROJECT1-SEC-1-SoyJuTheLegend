@@ -18,9 +18,10 @@ class Player {
         popup("playerAttack",1500)
     }
     getImage() {
-        if(this.character === "Foxster") return path.Foxster
-        else if(this.character === "Bearior") return path.Bearior
-        else return path.Raccoon      
+        return this.character.idle
+    }
+    getIcon() {
+        return this.character.icon
     }
     getPercentHealth() {
         const health = (this.health/this.maxHealth)*100 
@@ -29,7 +30,7 @@ class Player {
     selectCharacter(characterIndex = 0) {
         const character = characters?.[characterIndex]
         if (!character) return
-        this.character = character["character"]
+        this.character = character
         this.health = character["health"]
         this.maxHealth = character["health"]
         this.luck = character["luck"]
