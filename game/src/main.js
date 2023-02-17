@@ -56,6 +56,7 @@ function mainGame(character=0){
     setShow("mainBackground",false)
     setShow("mainGame",true)
     player.value.selectCharacter(character)
+    monster.value.setMaxHealth()
 }
 
 function backtogame(){

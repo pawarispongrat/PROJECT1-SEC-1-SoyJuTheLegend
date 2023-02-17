@@ -19,6 +19,9 @@ class Monster {
     getImage() {
         return path.monster.replace("%monster%",this.image)
     }
+    setMaxHealth() {
+      this.health = this.maxHealth
+    }
     getPercentHealth() {
       const health = (this.health/this.maxHealth)*100 
       return health <= 0 ? 0 : health
