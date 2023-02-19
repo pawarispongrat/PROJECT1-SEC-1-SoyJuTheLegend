@@ -54,7 +54,7 @@ function getCardSource(card) {
         <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text" placeholder="YOURNAME" maxlength="18">
       </div>
 
-      <div class="w-full flex justify-center overflow-x-scroll items-center space-x-4 p-5">
+      <div class="w-full flex lg:justify-center overflow-x-scroll items-center space-x-4 p-5">
         <div v-for="(item, index) in characters" :key="index">
           <div @click="player.name.trim() === '' ? emptyName() : mainGame(item.id)"
             class="px-12 py-[3.25rem] rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
