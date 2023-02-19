@@ -1,7 +1,8 @@
 import { popup,characters } from "../../main.js"
 import path from "../path_data.json"
-import { card,monster } from "../game/gameplay.js"
+import { monster } from "../game/gameplay.js"
 class Player {
+
     constructor() {
         this.name = ""
         this.character = "" 
@@ -10,9 +11,12 @@ class Player {
         this.damage = 0
         this.luck = 0
         this.crit = 0
+
+        this.cardName = ""
+        this.cardDamage = 0
     }  
     playerAttack() {
-        this.damage = card.value.player["damage"]
+        this.randomCritical()
         monster.value.health -= this.damage
         monster.value.dead()
         popup("playerAttack",1500)
@@ -35,6 +39,12 @@ class Player {
         this.maxHealth = character["health"]
         this.luck = character["luck"]
         this.crit = character["crit"]
+    }
+    randomCritical() {
+        const percentage = Math.floor(Math.random() * 100)
+        const CRIT_DAMAGE = 1.5
+        this.damage = this.cardDamage
+        if (this.crit > percentage) this.damage *= CRIT_DAMAGE
     }
     dead() {
         if ( this.health <= 0) {

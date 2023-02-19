@@ -3,7 +3,7 @@ import { init, show, playBtn, howToPlayBtn, backtoMain, characters, mainGame, em
 import path from "./assets/path_data.json"
 import {
   player, monster, level, turn, turns, win, wins,
-  playerTurn, getCard, nextTurn, getLoser, getPreviousCard
+  playerTurn, getCard, nextTurn, getLoser, getLoserCard
 } from "./assets/game/gameplay.js"
 init()
 const hover = "hover:-translate-y-1 hover:bg-teal-400 duration-300"
@@ -17,20 +17,20 @@ function getCardSource(card) {
 </script>
 <!-- :style="`background-image: url('${path.mainimages}');`" -->
 <template>
-  <div v-show="show.mainBackground" class="w-screen h-screen bg-cover "
+  <div v-show="show.mainBackground" class="w-screen h-screen bg-cover"
     :style="`background-image: url('${path.mainimages}');`">
     <div v-show="show.mainMenu" class="w-full h-full ">
       <div class="flex-col flex items-center w-full h-full justify-center">
-        <div class="flex justify-center w-1/2">
+        <div class="flex justify-center m-5">
           <img :src="path.animal_battle" alt="animal-battle" class="w-full h-full">
         </div>
         <div
-          class="w-2/12 m-8 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer"
+          class="mb-4 w-52 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer"
           @click="playBtn()">
           <img :src="path.play" alt="play-btn" class="w-full h-full">
         </div>
         <div
-          class="w-2/12 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer"
+          class="w-52 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer"
           @click="howToPlayBtn()">
           <img :src="path.howToPlay" alt="how-to-play-btn" class="w-full h-full">
         </div>
@@ -39,63 +39,60 @@ function getCardSource(card) {
 
 
     <!-- menu Characters -->
-    <div v-show="show.characterSelect" class="w-full h-full">
-      <div class="flex-col flex items-center w-full h-full justify-center">
-        <div class=" text-center py-4 lg:px-4 text-black m04b absolute top-2" v-show="show.nameEmptyAlert">
-          <div class="p-2 bg-red-600 items-center text-white leading-none lg:rounded-full flex lg:inline-flex"
-            role="alert">
-            <span class="flex rounded-full bg-white uppercase px-2 py-1 text-xs font-bold mr-3 text-black">Error!</span>
+
+    <div v-show="show.characterSelect" class="flex flex-col items-center w-screen h-screen justify-center">
+    
+      <div class="flex flex-col items-center space-y-4">
+        <div class="text-center text-black m04b absolute z-10 top-8" v-show="show.nameEmptyAlert">
+          <div class="p-2 bg-red-600 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+            <span class="flex rounded-full bg-white uppercase px-2 text-xs font-bold mr-3 text-black">Error!</span>
             <span class="font-semibold mr-2 text-left flex-auto">Enter Your Name</span>
           </div>
         </div>
-        <h1 class="text-5xl justify-center flex mb-8 text-current m04b choose-character">Choose Character</h1>
-        <div class="flex flex-col items-center">
-          <div class="flex items-center py-4  mb-8">
-            <label class="text-2xl text-white shadow-table m04b" for="YOURNAME">Your Name:</label>
-            <input v-model="player.name"
-              class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text"
-              placeholder="YOURNAME" maxlength="18">
-          </div>
+        <h1 class="text-5xl justify-center flex text-center m04b choose-character">Choose Character</h1>
+        <label class="text-2xl text-white shadow-table m04b" for="YOURNAME">Your Name:</label>
+        <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text" placeholder="YOURNAME" maxlength="18">
+      </div>
 
-
-          <div class="flex space-x-4 flex-wrap">
-            <div v-for="(item, index) in characters" :key="index">
-              <div @click="player.name.trim() === '' ? emptyName() : mainGame(item.id)"
-                class="px-12 py-[3.25rem] rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
-                :style="`background-image: url('${item.bg}')`">
-                <div class="space-y-3">
-                  <h2 class="flex text-3xl text-black m04b">
-                    <span class="character-name text-white">{{ item.character }}</span>
-                  </h2>
-                  <img :src="item.icon" alt="" class="w-full h-full bg-white bg-opacity-60">
-                  <div class="flex flex-col items-center m04b">
-                    <table class="shadow-table text-right text-white ">
-                      <tr>
-                        <td class="text-left">HP :</td>
-                        <td>{{ item.health }}</td>
-                      </tr>
-                      <tr>
-                        <td>CRIT :</td>
-                        <td>{{ item.crit }}</td>
-                      </tr>
-                      <tr>
-                        <td>LUCK :</td>
-                        <td>{{ item.luck }}</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
+      <div class="w-full flex justify-center overflow-x-scroll items-center space-x-4 p-5">
+        <div v-for="(item, index) in characters" :key="index">
+          <div @click="player.name.trim() === '' ? emptyName() : mainGame(item.id)"
+            class="px-12 py-[3.25rem] rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
+            :style="`background-image: url('${item.bg}')`">
+            <div class="space-y-3">
+              <h2 class="flex text-3xl text-black m04b">
+                <span class="character-name text-white">{{ item.character }}</span>
+              </h2>
+              <img :src="item.icon" alt="" class="w-full h-full bg-white bg-opacity-60">
+              <div class="flex flex-col items-center m04b">
+                <table class="shadow-table text-right text-white ">
+                  <tr>
+                    <td class="text-left">HP :</td>
+                    <td>{{ item.health }}</td>
+                  </tr>
+                  <tr>
+                    <td>CRIT :</td>
+                    <td>{{ item.crit }}</td>
+                  </tr>
+                  <tr>
+                    <td>LUCK :</td>
+                    <td>{{ item.luck }}</td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
-          <div
-            class="w-2/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer m-4"
-            @click="backtoMain()">
-            <img :src="path.back" alt="" class="w-full h-full">
-          </div>
         </div>
       </div>
+
+      <div
+        class="h-[10%] w-auto transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer m-4"
+        @click="backtoMain()">
+        <img :src="path.back" alt="" class="w-full h-full">
+      </div>
+
     </div>
+
     <!-- how to play -->
     <div class="flex-col flex items-center w-full h-full justify-center" v-show="show.howToPlay">
       <div class="justify-center flex">
@@ -138,13 +135,14 @@ function getCardSource(card) {
       </button>
     </div>
     <!-- BODY GAME -->
-    <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b]"
+    <div class="flex-1 flex justify-between items-center bg-contain bg-repeat-x bg-center bg-[#18181b] max-lg:-my-32"
       :style="`background-image: url('${path.mainGameBg}')`">
-      <img class="h-1/2 ml-14 -scale-x-100"
+      <img class="h-1/2 ml-14 -scale-x-100 max-lg:h-1/4"
         :class="show.monsterAttack ? 'on-damage' : (turn === 0 ? 'character-turn' : '')" :src="player.getImage()"
         alt="player-idle">
-      <img class="h-1/3 mr-14" :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')"
-        :src="monster.getImage()" :alt="monster.getImage()">
+      <img class="h-1/3 mr-14 max-lg:h-1/5"
+        :class="show.playerAttack ? 'on-damage' : (turn === 1 ? 'character-turn' : '')" :src="monster.getImage()"
+        :alt="monster.getImage()">
     </div>
     <!-- ACTION BAR -->
     <div class="flex flex-wrap items-center justify-center p-5 bg-zinc-900 max-lg:flex-col text-2xl">
@@ -163,7 +161,7 @@ function getCardSource(card) {
           <div>
             <span>{{ `HP: ${player.health}` }}</span>
             <span v-show="show.monsterAttack" class="text-red-600">{{ `-${monster.damage}` }}</span>
-            <span>{{`/${player.maxHealth} (${player.character.character})` }} </span>
+            <span>{{ `/${player.maxHealth} (${player.character.character})` }} </span>
           </div>
           </p>
           <!-- HEALTH BAR -->
@@ -200,11 +198,11 @@ function getCardSource(card) {
       <div v-show="show.cardAttack || show.summaryAttack"
         class="absolute inset-0 flex items-center justify-center bg-zinc-700 bg-opacity-20 space-x-3 ">
         <div class="flex flex-col space-y-3">
-          <div class="flex text-2xl shadow-xl bg-zinc-900 w-64 h-16 items-center justify-center">
+          <div class="flex text-2xl shadow-xl bg-zinc-900 p-5 items-center justify-center">
             <!-- SUMMARY WIN -->
             <div v-show="show.summaryAttack">
               <span :class="win === 0 ? 'text-emerald-500' : (win === 2 ? 'text-emerald-500' : 'text-red-500')">{{
-              wins[win] }}</span><span v-show="win !== 2">&nbsp;WIN</span>
+                wins[win] }}</span><span v-show="win !== 2">&nbsp;WIN</span>
             </div>
             <!-- TURN -->
             <div v-show="!show.summaryAttack">
@@ -212,31 +210,30 @@ function getCardSource(card) {
               <span :class="turn === 0 ? 'text-emerald-500' : 'text-red-500'">{{ turns[turn] }}</span>&nbsp;CARD
             </div>
           </div>
-          <div class="flex justify-between  max-w-2xl w-64 h-96 bg-gray shadow-xl text-3xl bg-white text-zinc-700">
+          <div class="flex justify-between w-48 max-w-2xl bg-gray shadow-xl text-3xl bg-white text-zinc-700">
             <img class="w-full h-full" :src="getCardSource(getCard())" :alt="getCard()">
           </div>
-          <button class="w-64 h-12 text-white spacing bg-emerald-600 shadow-lg text-2xl" @click="nextTurn()"
+          <button class="p-2 text-white spacing bg-emerald-600 shadow-lg text-2xl" @click="nextTurn()"
             :class="hover">NEXT TURN</button>
         </div>
         <!-- SUMMARY LOSE -->
         <div class="flex flex-col space-y-3" v-show="show.summaryAttack && win !== 2">
-          <div class="flex text-sm shadow-xl bg-zinc-900 w-40 h-12 items-center justify-center ">
+          <div class="flex text-sm shadow-xl bg-zinc-900 p-5 items-center justify-center ">
             <span :class="win === 0 ? 'text-red-500' : 'text-emerald-500'">{{ getLoser() }}</span>&nbsp;LOSE
           </div>
-          <div class="flex justify-between max-w-2xl w-20 h-32 bg-white shadow-xl text-md text-zinc-700">
-            <img class="w-full h-full" :src="getCardSource(getPreviousCard())" :alt="getPreviousCard()">
+          <div class="flex justify-between max-w-2xl w-24 bg-white shadow-xl text-md text-zinc-700">
+            <img class="w-full h-full" :src="getCardSource(getLoserCard())" :alt="getLoserCard()">
           </div>
         </div>
       </div>
-      <div
-        class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen"
+      <div class="flex flex-col justify-center items-center absolute inset-0 bg-zinc-700 bg-opacity-90 w-screen h-screen"
         v-show="show.playerDead">
         <div>
           <img :src="path.gameOver" alt="" class="w-96">
         </div>
-        <div class="justify-center m-8 space-x-5">
-          <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl"
-            @click="tryagain()">TRY AGAIN</button>
+        <div class="flex justify-center m-8 space-x-5">
+          <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl" @click="tryagain()">TRY
+            AGAIN</button>
           <button class="bg-emerald-500 hover:bg-teal-600 text-white font-bold py-2 px-4 text-xl"
             @click="backtoMain()">BACK TO MAIN</button>
         </div>
@@ -272,12 +269,10 @@ function getCardSource(card) {
 
 .thai-pix {
   font-family: "thai-pix";
-
-
 }
 
 .m04b {
-  font-family: "m04b", "thai-pix";
+  font-family: "m04b";
 }
 
 .screen,

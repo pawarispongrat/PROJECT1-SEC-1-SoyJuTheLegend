@@ -1,6 +1,6 @@
 import { popup } from "../../main.js"
 import path from "../path_data.json"
-import { card,player } from "../game/gameplay.js"
+import { player } from "../game/gameplay.js"
 class Monster {
     constructor(name,health,image = "") {
       this.name = name
@@ -9,9 +9,12 @@ class Monster {
       this.image = image
       this.damage = 0
       this.percentHealth = (this.health/this.maxHealth)*100 //0-100%
+
+      this.cardName = ""
+      this.cardDamage = ""
     }
     monsterAttack() {
-        this.damage = card.value.monster["damage"]
+        this.damage = this.cardDamage
         player.value.health -= this.damage
         player.value.dead()
         popup("monsterAttack",1500)

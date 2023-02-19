@@ -8,10 +8,6 @@ const monster = ref("")
 const level = ref(1)
 const turn = ref(0) //0 = PLAYER, 1 = MONSTER, 2 = SUMMARY
 const win = ref(0)  //0 = PLAYER, 1 = MONSTER, 2 = DRAW
-const card = ref({
-    player: { name: "", damage: 0 },
-    monster: { name: "", damage: 0 }
-})
 //ARRAY
 const turns = [ "PLAYER","MONSTER", "SUMMARY" ] 
 const wins = [ "PLAYER","MONSTER","DRAW" ]
@@ -37,17 +33,17 @@ function nextTurn() {
 }
 function playerTurn() {
     unpopup("attackButton")
-    randomCardPlayer(card.value.player)
+    randomPlayerCard()
     popup("cardAttack")
 }
 function monsterTurn() {
-    randomCardMonster(card.value.monster)
+    randomMonsterCard()
     popup("cardAttack")
 }
 
 function summaryTurn() {
-    const monsterDamage = card.value.monster["damage"]
-    const playerDamage = card.value.player["damage"]
+    const monsterDamage = monster.value.cardDamage
+    const playerDamage = player.value.cardDamage
 
     if (playerDamage > monsterDamage) win.value = 0
     else if (monsterDamage > playerDamage) win.value = 1
@@ -59,60 +55,49 @@ function summaryTurn() {
 function getLoser() {
     return wins[win.value === 0 ? win.value+1 : win.value-1] // 0 PLAYER : 1 MONSTER
 }
-function getPreviousCard() {
-    return getCardByNumber(win.value === 0 ? win.value+1 : win.value-1)
+function getLoserCard() {
+    return win.value === 0 ? getMonsterCard() : getPlayerCard()
 }
-function getCardByNumber(entityNum) {
-    if (entityNum === 0) return card.value.player["name"]
-    else return card.value.monster["name"]
+function getPlayerCard() {
+    return player.value.cardName
+}
+function getMonsterCard() {
+    return monster.value.cardName
 }
 function getCard() {
-    if (turn.value === 2) {
-        if (win.value === 0) return getCardByNumber(0)
-        else return getCardByNumber(1)
-    } else {
-        if (turn.value === 0) return getCardByNumber(0)
-        else return getCardByNumber(1)
+    if (turn.value === 0) return getPlayerCard() //PLAYER
+    else if (turn.value === 1) return getMonsterCard() //MONSTER
+    else { //SUMMARY 
+        if (win.value === 0) return getPlayerCard() //IF PLAYER WIN
+        else return getMonsterCard() //IF MONSTER WIN
     }
 }
 
 
-function randomCardMonster(entity) {
-    const damage = Math.floor(Math.random()*cards.length) //0-12
-    entity["name"] = cards[damage]
-    entity["damage"] = damage+1
+function randomMonsterCard() {
+    const randomCard = Math.floor(Math.random()*cards.length) //0-12
+    const monsterData = monster.value
+    monsterData.cardName = cards[randomCard]
+    monsterData.cardDamage = randomCard+1
 }
 
 
-function randomCardPlayer(entity){
+function randomPlayerCard(){
     const random = Math.floor(Math.random() * 100)
-    const percentageluck = player.value.luck
-    const percentagecri = player.value.crit
+    const luck = player.value.luck
     const breakpoint = cards.length-4
-    const critdamage = 1.5
-  
-    function randomcri(damage) {
-      const percentage = Math.floor(Math.random() * 100)
-      if (percentagecri > percentage) {
-        return (damage+1)*critdamage
-      } else {
-        return damage+1
-      }
-    }
-  
-    if (random < percentageluck) {
-      const randomluck = Math.floor(Math.random() * 4)+breakpoint
-      entity["name"] = cards[randomluck]
-      entity["damage"] = randomcri(randomluck)
-    } else {
-      const randomluck = Math.floor(Math.random() * breakpoint)
-      entity["name"] = cards[randomluck]
-      entity["damage"] = randomcri(randomluck)
-    }
+
+    let randomCard = ""
+    if (random < luck) randomCard = Math.floor(Math.random() * 4) + breakpoint
+    else randomCard = Math.floor(Math.random() * breakpoint)
+
+    const playerData = player.value
+    playerData.cardName = cards[randomCard]
+    playerData.cardDamage = randomCard+1
 }
 
 export { 
-    monster,player,level,turn,turns,cards,card,wins,win,
+    monster,player,level,turn,turns,cards,wins,win,
     monsterTurn,playerTurn,getCard
-    ,nextTurn,getPreviousCard,getLoser
+    ,nextTurn,getLoserCard,getLoser
 }
