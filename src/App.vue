@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue"
 import { init, show, playBtn, howToPlayBtn, backtoMain, characters, mainGame, emptyName, backtogame, pause, tryagain } from "./main.js"
 import path from "./assets/path_data.json"
 import {
@@ -13,6 +14,16 @@ function getCardSource(card) {
   //src/assets/background/card/%card%.png
   //src/assets/background/card/K.png
 
+}
+
+const charCard = ref(0)
+
+function nextChar() {
+  charCard.value >= characters.length-1 ? charCard.value = 0 : charCard.value++
+}
+
+function previousChar() {
+  charCard.value <= 0 ? charCard.value = characters.length-1 : charCard.value--
 }
 </script>
 <!-- :style="`background-image: url('${path.mainimages}');`" -->
@@ -40,7 +51,7 @@ function getCardSource(card) {
 
     <!-- menu Characters -->
 
-    <div v-show="show.characterSelect" class="flex flex-col items-center w-screen h-screen justify-center">
+    <div v-show="show.characterSelect" class="flex flex-col items-center w-screen h-screen justify-center max-lg:hidden">
     
       <div class="flex flex-col items-center space-y-4">
         <div class="text-center text-black m04b absolute z-10 top-8" v-show="show.nameEmptyAlert">
@@ -54,7 +65,7 @@ function getCardSource(card) {
         <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text" placeholder="YOURNAME" maxlength="18">
       </div>
 
-      <div class="w-full flex lg:justify-center overflow-x-scroll items-center space-x-4 p-5">
+      <div class="w-full flex justify-center overflow-x-scroll items-center space-x-4 p-5">
         <div v-for="(item, index) in characters" :key="index">
           <div @click="player.name.trim() === '' ? emptyName() : mainGame(item.id)"
             class="px-12 py-[3.25rem] rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 bg-center bg-cover cursor-pointer"
@@ -84,7 +95,6 @@ function getCardSource(card) {
           </div>
         </div>
       </div>
-
       <div
         class="h-[10%] w-auto transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer m-4"
         @click="backtoMain()">
@@ -92,6 +102,52 @@ function getCardSource(card) {
       </div>
 
     </div>
+
+
+   
+      <div v-show="show.characterSelect" class="w-screen h-screen lg:hidden flex flex-col justify-center ">
+
+        <div class="w-full h-[15%] flex justify-center items-center">
+          <h1 class="text-2xl text-current m04b choose-character text-center">Choose Character</h1>
+        </div>
+
+        <div class="w-full h-[15%] flex flex-col justify-center items-center">
+          <input v-model="player.name" class="w-auto bg-slate-50 border-4 border-slate-600 bg-opacity-65  text-center m04b"
+            type="text" placeholder="ENTER YOUR NAME" maxlength="18">
+        </div>
+
+        <div class="w-auto h-full flex flex-row justify-center">
+          <div class="flex flex-row justify-center w-full h-full">
+            <button @click="previousChar" class="w-[10%] text-4xl text-white"><span class="bg-black p-2 rounded-full bg-opacity-50 font-bold">&#60</span></button>
+            <div  @click="player.name.trim() === '' ? emptyName() : mainGame(charCard)" class="px-9 py-[3.25rem] space-y-4 items-center flex flex-col justify-center bg-center bg-contain bg-no-repeat" :style="`background-image: url('${characters[charCard].bg}')`">
+              <h2 class="m04b text-2xl character-name text-white">{{ characters[charCard].character }}</h2>
+              <img :src="characters[charCard].icon" alt="" class="bg-black bg-opacity-60">
+              <div class="shadow-table m04b text-center text-white">
+                <table>
+                  <tr>
+                    <td>HP :</td>
+                    <td>{{ characters[charCard].health }}</td>
+                  </tr>
+                  <tr>
+                    <td>CRIT :</td>
+                    <td>{{ characters[charCard].crit }}</td>
+                  </tr>
+                  <tr>
+                    <td>LUCK :</td>
+                    <td>{{ characters[charCard].luck }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <button @click="nextChar" class="w-[10%] text-4xl text-white"><span class="bg-black p-2 rounded-full bg-opacity-50 font-bold">&#62</span></button>
+          </div>
+        </div>
+        <div class="w-full h-[15%] flex justify-center">
+          <img :src="path.back" alt="" class=" h-[50%]">
+        </div>
+      </div>
+
+    
 
     <!-- how to play -->
     <div class="flex-col flex items-center w-full h-full justify-center" v-show="show.howToPlay">
@@ -210,7 +266,7 @@ function getCardSource(card) {
               <span :class="turn === 0 ? 'text-emerald-500' : 'text-red-500'">{{ turns[turn] }}</span>&nbsp;CARD
             </div>
           </div>
-          <div class="flex justify-between w-48 max-w-2xl bg-gray shadow-xl text-3xl bg-white text-zinc-700">
+          <div class="flex justify-between w-53 max-w-2xl bg-gray shadow-xl text-3xl bg-white text-zinc-700">
             <img class="w-full h-full" :src="getCardSource(getCard())" :alt="getCard()">
           </div>
           <button class="p-2 text-white spacing bg-emerald-600 shadow-lg text-2xl" @click="nextTurn()"
