@@ -252,7 +252,7 @@ function previousChar() {
     <!-- CARD -->
     <div class="flex">
       <div v-show="show.cardAttack || show.summaryAttack"
-        class="absolute inset-0 flex items-center justify-center bg-zinc-700 bg-opacity-20 space-x-3 ">
+        class="absolute inset-0 flex items-center justify-center bg-zinc-700 bg-opacity-20 space-x-3 z-20">
         <div class="flex flex-col space-y-3">
           <div class="flex text-2xl shadow-xl bg-zinc-900 p-5 items-center justify-center">
             <!-- SUMMARY WIN -->
