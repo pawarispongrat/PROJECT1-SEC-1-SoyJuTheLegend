@@ -55,14 +55,14 @@ function previousChar() {
     
       <div class="flex flex-col items-center space-y-4">
         <div class="text-center text-black m04b absolute z-10 top-8" v-show="show.nameEmptyAlert">
-          <div class="p-2 bg-red-600 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+          <div class="p-2 bg-red-600 items-center text-white leading-none rounded-full flex" role="alert">
             <span class="flex rounded-full bg-white uppercase px-2 text-xs font-bold mr-3 text-black">Error!</span>
             <span class="font-semibold mr-2 text-left flex-auto">Enter Your Name</span>
           </div>
         </div>
         <h1 class="text-5xl justify-center flex text-center m04b choose-character">Choose Character</h1>
         <label class="text-2xl text-white shadow-table m04b" for="YOURNAME">Your Name:</label>
-        <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-3 px-20 text-center m04b" type="text" placeholder="YOURNAME" maxlength="18">
+        <input v-model="player.name" class="bg-slate-50 border-4 border-slate-600 bg-opacity-65 py-2q px-20 text-center m04b" type="text" placeholder="ENTER YOUR NAME" maxlength="18">
       </div>
 
       <div class="w-full flex justify-center overflow-x-scroll items-center space-x-4 p-5">
@@ -76,7 +76,7 @@ function previousChar() {
               </h2>
               <img :src="item.icon" alt="" class="w-full h-full bg-white bg-opacity-60">
               <div class="flex flex-col items-center m04b">
-                <table class="shadow-table text-right text-white ">
+                <table class="shadow-table text-right text-white m04b">
                   <tr>
                     <td class="text-left">HP :</td>
                     <td>{{ item.health }}</td>
@@ -105,44 +105,51 @@ function previousChar() {
 
 
    
-      <div v-show="show.characterSelect" class="w-screen h-screen lg:hidden flex flex-col justify-center ">
+      <div v-show="show.characterSelect" class="w-screen h-screen lg:hidden flex flex-col justify-center items-center space-y-4">
 
-        <div class="w-full h-[15%] flex justify-center items-center">
+        <div class="w-full flex justify-center items-center">
           <h1 class="text-2xl text-current m04b choose-character text-center">Choose Character</h1>
         </div>
 
-        <div class="w-full h-[15%] flex flex-col justify-center items-center">
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="text-center text-black m04b absolute z-10 top-8" v-show="show.nameEmptyAlert">
+            <div class="p-2 bg-red-600 items-center text-white leading-none rounded-full inline-flex" role="alert">
+              <span class="flex rounded-full bg-white uppercase px-2 text-xs font-bold mr-3 text-black">Error!</span>
+              <span class="font-semibold mr-2 text-left flex-auto">Enter Your Name</span>
+            </div>
+          </div>
           <input v-model="player.name" class="w-auto bg-slate-50 border-4 border-slate-600 bg-opacity-65  text-center m04b"
             type="text" placeholder="ENTER YOUR NAME" maxlength="18">
         </div>
 
-        <div class="w-auto h-full flex flex-row justify-center">
+        <div class="w-auto flex flex-row justify-center">
           <div class="flex flex-row justify-center w-full h-full">
-            <button @click="previousChar" class="w-[10%] text-4xl text-white"><span class="bg-black p-2 rounded-full bg-opacity-50 font-bold">&#60</span></button>
-            <div  @click="player.name.trim() === '' ? emptyName() : mainGame(charCard)" class="px-9 py-[3.25rem] space-y-4 items-center flex flex-col justify-center bg-center bg-contain bg-no-repeat" :style="`background-image: url('${characters[charCard].bg}')`">
-              <h2 class="m04b text-2xl character-name text-white">{{ characters[charCard].character }}</h2>
-              <img :src="characters[charCard].icon" alt="" class="bg-black bg-opacity-60">
-              <div class="shadow-table m04b text-center text-white">
-                <table>
-                  <tr>
-                    <td>HP :</td>
-                    <td>{{ characters[charCard].health }}</td>
-                  </tr>
-                  <tr>
-                    <td>CRIT :</td>
-                    <td>{{ characters[charCard].crit }}</td>
-                  </tr>
-                  <tr>
-                    <td>LUCK :</td>
-                    <td>{{ characters[charCard].luck }}</td>
-                  </tr>
-                </table>
-              </div>
+            <button @click="previousChar" class="pr-2 text-4xl text-white"><span class="pb-1 px-1 bg-black rounded-full bg-opacity-50 font-bold">&#60</span></button>
+            <div  @click="player.name.trim() === '' ? emptyName() : mainGame(charCard)" 
+            class="px-2 py-[3.25rem] space-y-2 items-center justify-center flex flex-col transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 cursor-pointer bg-center bg-contain bg-no-repeat" :style="`background-image: url('${characters[charCard].bg}')`">
+              <h2 class="m04b text-l character-name text-white">{{ characters[charCard].character }}</h2>
+              <img :src="characters[charCard].icon" alt="" class="w-2/3 bg-black bg-opacity-60">
+              <div class="flex flex-col items-center m04b">
+                <table class="shadow-table text-left text-white text-sm">
+                    <tr>
+                      <td>HP :</td>
+                      <td>{{ characters[charCard].health }}</td>
+                    </tr>
+                    <tr>
+                      <td>CRIT :</td>
+                      <td>{{ characters[charCard].crit }}</td>
+                    </tr>
+                    <tr>
+                      <td>LUCK :</td>
+                      <td>{{ characters[charCard].luck }}</td>
+                    </tr>
+                  </table>
+                </div>
             </div>
-            <button @click="nextChar" class="w-[10%] text-4xl text-white"><span class="bg-black p-2 rounded-full bg-opacity-50 font-bold">&#62</span></button>
+            <button @click="nextChar" class="pl-2 text-4xl text-white"><span class="pb-1 px-1 bg-black rounded-full bg-opacity-50 font-bold">&#62</span></button>
           </div>
         </div>
-        <div class="w-full h-[15%] flex justify-center">
+        <div class="w-full h-[13%] flex justify-center">
           <img :src="path.back" alt="" class=" h-[50%]">
         </div>
       </div>
