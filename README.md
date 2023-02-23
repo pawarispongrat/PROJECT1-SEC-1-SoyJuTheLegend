@@ -31,3 +31,8 @@
   <li>หลังจากสุ่มการ์ดแล้วจะเข้าสู่ Summary Turn เพื่อหาค่าการ์ดของฝ่ายที่มากกว่ากัน </li>
   <li>ตัวเกมจะสลับกันสู้จนกว่าจะรู้ผลแพ้ชนะ</li>
 </ul>
+
+ ## SOURCE REFERENCES
+- https://www.dafont.com/m04fatal-fury.font (m04fatal-fury font)
+- https://www.dafont.com/upheaval.font (upheaval font)
+- https://github.com/joseph-coyne/vue-rpg (game inspiration and reference)
