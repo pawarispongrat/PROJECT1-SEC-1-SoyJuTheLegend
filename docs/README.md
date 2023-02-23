@@ -24,4 +24,4 @@ ART STYLE: Pixel Art
 ## SOURCE REFERENCES
 - https://www.dafont.com/m04fatal-fury.font (m04fatal-fury font)
 - https://www.dafont.com/upheaval.font (upheaval font)
-- https://github.com/joseph-coyne/vue-rpg (game inspiration and reference)
+- https://github.com/joseph-coyne/vue-rpg (game inspiration and reference) (ใช้เป็น data ตัวอย่างเพื่อเป็นการ design ตัวเกมของเรา)
